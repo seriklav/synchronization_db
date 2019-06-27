@@ -1,0 +1,40 @@
+#!/usr/bin/env php
+<?php
+/**
+ * Developers by Lavrinyuk Sergey on 6/27/19 11:58 AM.
+ * Last modified 6/27/19 11:58 AM.
+ * Copyright (c) 2019. All rights reserved.
+ */
+// sync.php
+
+require __DIR__.'/vendor/autoload.php';
+
+use Symfony\Component\Console\Application;
+use Console\TimeCommand;
+
+$application = new Application('Synchronization DB', '1.0.0');
+
+// TODO:: need to change access to DB
+$options = [
+	'local' => [
+		'host' =>  'localhost',
+		'dbname' =>  'test',
+		'user' =>  'root',
+		'pass' =>  'root',
+	],
+	'remote' => [
+		'host' =>  'my.domain.com',
+		'dbname' =>  'remote',
+		'user' =>  'root',
+		'pass' =>  'root',
+	],
+	// PATH DUMP
+	'path' => [
+		'local' =>  __DIR__ . '/dump/local.sql',
+		'remote' =>  __DIR__ . '/dump/remote.sql',
+	]
+];
+
+$application->add(new TimeCommand($options));
+
+$application->run();

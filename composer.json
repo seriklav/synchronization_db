@@ -1,0 +1,12 @@
+{
+    "require": {
+        "symfony/console": "^4.3",
+        "dg/mysql-dump": "^1.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "Console\\": "src"
+        },
+        "classmap": ["src"]
+    }
+}
